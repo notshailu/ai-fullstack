@@ -3,7 +3,7 @@ const router = express.Router();
 const postcontroller = require("../controllers/post.controller");
 const authmiddleware = require("../middleware/auth.middleware");
 const multer = require("multer");
-const ailimiter = require("../services/Ratelimit");
+const ailimiter = require("../services/rateLimit");
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -19,10 +19,6 @@ router.post(
 );
 
 // Get history of posts for the logged-in user
-router.get(
-  "/history",
-  authmiddleware,
-  postcontroller.getUserHistory,
-);
+router.get("/history", authmiddleware, postcontroller.getUserHistory);
 
 module.exports = router;

@@ -3,7 +3,6 @@ const router = express.Router();
 const postcontroller = require("../controllers/post.controller");
 const authmiddleware = require("../middleware/auth.middleware");
 const multer = require("multer");
-const ailimiter = require("../services/rateLimit");
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -13,7 +12,7 @@ const upload = multer({
 router.post(
   "/post",
   authmiddleware,
-  ailimiter,
+
   upload.single("image"),
   postcontroller.createpostcontroller,
 );
